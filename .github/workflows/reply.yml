@@ -1,0 +1,43 @@
+name: Reply to comments
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # UTC; quiet hours (11pm to 7am India time) are handled in the script
+  workflow_dispatch:
+    inputs:
+      max:
+        description: "Most replies this run"
+        default: "3"
+      ignore_quiet_hours:
+        description: "Post even during quiet hours"
+        type: boolean
+        default: false
+
+concurrency:
+  group: reply                # never two runs at once, so nobody gets two replies
+  cancel-in-progress: false
+
+jobs:
+  reply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Restore YouTube login
+        env:
+          YT_TOKEN_JSON: ${{ secrets.YT_TOKEN_JSON }}
+        run: |
+          umask 077
+          printf '%s' "$YT_TOKEN_JSON" > token.json
+      - name: Post replies
+        run: |
+          # Small random start delay so replies don't land on :00/:15/:30/:45.
+          if [ "${{ github.event_name }}" = "schedule" ]; then sleep $((RANDOM % 180)); fi
+          python -u post_replies.py \
+            --max "${{ inputs.max || '3' }}" --min-gap 1.5 --max-gap 5 \
+            ${{ inputs.ignore_quiet_hours && '--ignore-quiet-hours' || '' }}
