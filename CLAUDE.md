@@ -18,10 +18,11 @@ so the channel is never flagged as spam.
 - (filled in once built)
 
 ## Safety rules
-- Auto-reply only when the comment is basically just the keyword (a few words at most). Longer
+- Auto-reply only when the comment is 3 words or fewer (`replies.MAX_WORDS`). Longer
   comments go to a list for Appu to answer by hand.
 - Never post the same reply text twice. Never reply twice to the same person on the same video.
-- Random delay between replies, quiet hours at night, daily cap (start at 25).
+- Random delay (about 2 to 8 min) between replies, quiet hours at night, daily cap 190
+  (Appu wants no waiting; 190 is the ceiling of the free 10,000 unit/day API quota).
 - If YouTube rejects or hides replies, stop and alert; never retry in a tight loop.
 - Secrets (`.env`, `client_secret.json`, `token.json`) are gitignored, chmod 600, never in chat.
   This repo is PUBLIC: on GitHub, secrets live only in encrypted Actions Secrets.
