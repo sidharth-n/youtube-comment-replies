@@ -20,7 +20,11 @@ so the channel is never flagged as spam.
   Google Cloud is used only for the YouTube API login, with no billing or server.
 
 ## Commands
-- (filled in once built)
+- Setup: `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`
+- Preview (posts nothing): `.venv/bin/python post_replies.py --max 5 --dry-run --ignore-quiet-hours`
+- Channel survey (read-only): `.venv/bin/python survey_channel.py`
+- Manual GitHub run: `gh workflow run reply.yml -f max=1 -f ignore_quiet_hours=true`
+- Never run the poster on the laptop while GitHub runs are active without checking `gh run list` first.
 
 ## Safety rules
 - Auto-reply only when the comment is 3 words or fewer (`replies.MAX_WORDS`). Longer
