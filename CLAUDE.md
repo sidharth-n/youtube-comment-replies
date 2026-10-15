@@ -7,6 +7,11 @@ that video's keyword, and replies with the video's link. Replies must read like 
 every reply worded differently (assembled from a pre-written phrase bank, never the same text twice), posted at random intervals, with daily caps
 so the channel is never flagged as spam.
 
+## Links
+- All landing pages live under https://ayurbook.com/vaidyar/ (one page per video, e.g. `/vaidyar/vayar/`).
+- Only videos where viewers are asked to comment for a link go in `videos.json`. Compliment-only
+  videos are left alone (Appu, 2026-10-16).
+
 ## Stack
 - Python 3.10+
 - YouTube Data API v3 (OAuth as the channel) for reading comments and posting replies
