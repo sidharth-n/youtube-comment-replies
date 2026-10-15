@@ -81,14 +81,16 @@ def main():
             used.add(text)
             continue
         try:
+            yt = get_service()  # fresh connection: the old one goes stale during the long waits
             yt.comments().insert(part="snippet", body={
                 "snippet": {"parentId": c["thread"], "textOriginal": text}}).execute()
             used.add(text)
             posted += 1
             print(f"   POSTED {now_ist():%H:%M:%S}")
-        except HttpError as e:
+        except (HttpError, OSError) as e:  # OSError covers timeouts and dropped connections
             failures += 1
-            print(f"   REJECTED by YouTube: {e.status_code} {e.reason}")
+            reason = f"{e.status_code} {e.reason}" if isinstance(e, HttpError) else repr(e)
+            print(f"   FAILED: {reason}")
             if failures >= MAX_FAILURES:
                 print("Too many rejections. Stopping so the channel is not flagged.")
                 return 1
