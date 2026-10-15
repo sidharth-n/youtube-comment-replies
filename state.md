@@ -1,13 +1,13 @@
 # State
 
 ## Now
-Step 1 of 5: project scaffolded, private repo created. Waiting on Appu's Google Cloud setup (YouTube API + OAuth client).
+Step 1 of 5 DONE: repo (public), Google Cloud project youtube-comment-replies-511718, YouTube Data API v3 enabled, OAuth app published (In production), Desktop client_secret.json in place (gitignored, chmod 600).
 
 ## Next
 Step 2: read-only test that lists keyword-matching comments on one video.
 
 ## Blockers
-- Need from Appu: test video link + keyword + landing page link, 2 to 3 sample replies in his own tone.
+- Need from Appu for step 2: test video link + keyword + landing page link, 2 to 3 sample replies in his own tone.
 
 ## Latest handoff
 2026-10-15: plan approved (API route, Haiku replies, random timing, Google Cloud e2-micro). Scaffold done.
