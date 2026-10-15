@@ -11,7 +11,8 @@ so the channel is never flagged as spam.
 - Python 3.10+
 - YouTube Data API v3 (OAuth as the channel) for reading comments and posting replies
 - No LLM at runtime: reply text comes from a phrase bank written in advance
-- Runs on a Google Cloud free-tier e2-micro server
+- Runs on GitHub Actions on a schedule (public repo, so Actions minutes are free).
+  Google Cloud is used only for the YouTube API login, with no billing or server.
 
 ## Commands
 - (filled in once built)
@@ -23,6 +24,7 @@ so the channel is never flagged as spam.
 - Random delay between replies, quiet hours at night, daily cap (start at 25).
 - If YouTube rejects or hides replies, stop and alert; never retry in a tight loop.
 - Secrets (`.env`, `client_secret.json`, `token.json`) are gitignored, chmod 600, never in chat.
+  This repo is PUBLIC: on GitHub, secrets live only in encrypted Actions Secrets.
 
 ## Conventions
 - Micro-commits; never break the previously-working state (see global CLAUDE.md).

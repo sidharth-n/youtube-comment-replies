@@ -12,3 +12,4 @@ Step 2: read-only test that lists keyword-matching comments on one video.
 ## Latest handoff
 2026-10-15: plan approved (API route, Haiku replies, random timing, Google Cloud e2-micro). Scaffold done.
 2026-10-15: dropped Claude Haiku. Appu: most comments are a single prompted word; he replies to long ones by hand. Replies come from a phrase bank.
+2026-10-15: dropped the Google Cloud server (needs a card, bill risk after trial). Runs on GitHub Actions; repo made public for unlimited free minutes.
