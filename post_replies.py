@@ -36,6 +36,7 @@ def main():
     ap.add_argument("--max-gap", type=float, default=8, help="minutes")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--ignore-quiet-hours", action="store_true")
+    ap.add_argument("--video", help="only reply on this video ID (from videos.json)")
     a = ap.parse_args()
 
     if not a.ignore_quiet_hours and (now_ist().hour >= QUIET_START or now_ist().hour < QUIET_END):
@@ -56,8 +57,8 @@ def main():
                 published = dt.datetime.fromisoformat(r["snippet"]["publishedAt"].replace("Z", "+00:00"))
                 if published.astimezone(IST).date() == today:
                     sent_today += 1
-            if author_id(top) == my_id or mine:
-                continue
+            if author_id(top) == my_id or mine or (a.video and v["video_id"] != a.video):
+                continue  # other videos still count toward used texts and today's total
             text = top["snippet"]["textDisplay"]
             item = {"thread": t["id"], "author": top["snippet"]["authorDisplayName"], "text": text,
                     "published": top["snippet"]["publishedAt"], "link": v["link"]}
