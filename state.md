@@ -3,6 +3,12 @@
 _Last updated: 2026-10-16_
 
 ## Now
+**2026-10-16 16:35 IST: GitHub workflow PAUSED** (`gh workflow disable reply.yml`) because GitHub's
+scheduler started only 4 of ~65 runs today. Replies now post from the laptop via `run_on_laptop.sh`
+(log /tmp/laptop_replies.log). Plan: Appu sets up cron-job.org this evening to trigger the workflow,
+then `gh workflow enable reply.yml` (the laptop loop exits by itself when it sees that).
+17 long comments answered by hand on 2026-10-16; reply log at data/reply_log.html (export_reply_log.py).
+
 LIVE. GitHub Actions workflow "Reply to comments" (`.github/workflows/reply.yml`, branch master) runs
 every 15 min, posts up to 3 replies/run with 1.5 to 5 min gaps, cap 190/day, quiet 11pm to 7am IST.
 Videos in `videos.json`: r8-xJkmGneA (Bloated Belly, /vaidyar/vayar/), DFd4RXSJuSc (Stretch Marks,

@@ -25,6 +25,7 @@ so the channel is never flagged as spam.
 - Channel survey (read-only): `.venv/bin/python survey_channel.py`
 - Reply log (read-only, writes gitignored `data/reply_log.csv` and `.html`): `.venv/bin/python export_reply_log.py`
 - Manual GitHub run: `gh workflow run reply.yml -f max=1 -f ignore_quiet_hours=true`
+- Laptop loop (pause GitHub first with `gh workflow disable reply.yml`): `nohup setsid ./run_on_laptop.sh >> /tmp/laptop_replies.log 2>&1 &`. Stop: `pkill -f run_on_laptop.sh`. It stops by itself if the workflow is re-enabled.
 - Never run the poster on the laptop while GitHub runs are active without checking `gh run list` first.
 
 ## Safety rules
