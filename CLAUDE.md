@@ -29,6 +29,8 @@ so the channel is never flagged as spam.
 - Never run the poster on the laptop while GitHub runs are active without checking `gh run list` first.
 
 ## Safety rules
+- **Replies give the link only, never health advice** (no remedies, diet, which ingredient, "see a doctor"),
+  unless Appu asks for advice and it has been researched first. Applies to hand-written replies too (Appu, 2026-10-16).
 - Auto-reply only when the comment is 3 words or fewer (`replies.MAX_WORDS`). Longer
   comments go to a list for Appu to answer by hand.
 - Never post the same reply text twice. Never reply twice to the same person on the same video.

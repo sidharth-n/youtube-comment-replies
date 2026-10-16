@@ -6,3 +6,6 @@
   with -u. Don't treat a missing line as a hang; confirm against YouTube itself before acting.
 - 2026-10-16: OAuth login must happen in the Chrome profile already signed in to the channel. A fresh
   profile hits a Google CAPTCHA, and the Chrome extension cannot drive accounts.google.com.
+- 2026-10-16: Replies to viewer comments give only the link. No health advice in any reply (remedies,
+  diet, ingredients, doctor referrals) unless Appu asks for it and it has been researched first, even
+  when the landing page itself contains the answer.
