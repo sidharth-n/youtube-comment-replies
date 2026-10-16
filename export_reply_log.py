@@ -49,6 +49,18 @@ def main():
         w.writerows(rows)
     by_type = {k: sum(r["type"] == k for r in rows) for k in ("auto", "hand-written")}
     print(f"Wrote {len(rows)} replies to {OUT} ({by_type['auto']} auto, {by_type['hand-written']} hand-written)")
+    page = OUT.replace(".csv", ".html")
+    with open(page, "w", encoding="utf-8") as f:
+        f.write(render_page(rows))
+    print(f"Wrote {page}")
+
+
+def render_page(rows):
+    """One self-contained page: summary, filters, and each comment beside our reply."""
+    data = json.dumps(rows, ensure_ascii=False).replace("</", "<\\/")
+    stamp = dt.datetime.now(IST).strftime("%d %b %Y, %H:%M IST")
+    tpl = open(os.path.join(HERE, "reply_log_template.html"), encoding="utf-8").read()
+    return tpl.replace("__DATA__", data).replace("__STAMP__", stamp)
 
 
 if __name__ == "__main__":

@@ -23,7 +23,7 @@ so the channel is never flagged as spam.
 - Setup: `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`
 - Preview (posts nothing): `.venv/bin/python post_replies.py --max 5 --dry-run --ignore-quiet-hours`
 - Channel survey (read-only): `.venv/bin/python survey_channel.py`
-- Reply log (read-only, writes gitignored `data/reply_log.csv`): `.venv/bin/python export_reply_log.py`
+- Reply log (read-only, writes gitignored `data/reply_log.csv` and `.html`): `.venv/bin/python export_reply_log.py`
 - Manual GitHub run: `gh workflow run reply.yml -f max=1 -f ignore_quiet_hours=true`
 - Never run the poster on the laptop while GitHub runs are active without checking `gh run list` first.
 
